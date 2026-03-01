@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
-const token = 'ВАШ_ТОКЕН_ЗДЕСЬ';
+const token = '
+8636438139:AAFwUi_Dc6xDvAcZCdLVRt7SWQsVLGrRb6o';
 const bot = new TelegramBot(token, { polling: true });
 const miniAppUrl = 'https://vaniokk14-cyber.github.io/IKRU-MNE/';
 

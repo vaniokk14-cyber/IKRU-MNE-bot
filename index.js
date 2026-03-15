@@ -4,7 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = 'ТВОЙ_ТОКЕН';
 
 // канал заказов
-const ordersChannel = -100XXXXXXXXXX;
+const ordersChannel = https://t.me/+2W9uR566RkI0ZGU0;
 
 // бот
 const bot = new TelegramBot(token, { polling: true });

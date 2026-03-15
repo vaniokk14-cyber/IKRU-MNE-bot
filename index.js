@@ -15,7 +15,7 @@ bot.onText(/\/start/, (msg) => {
   bot.sendMessage(chatId, "🐟 Добро пожаловать в IKRU MNE!", {
     reply_markup: {
       inline_keyboard: [
-        [{ text: "🛒 Магазин", url: miniAppUrl }],
+        [{ text: "🛒 Магазин", web_app: { url: miniAppUrl } }]
         [{ text: "ℹ️ О нас", callback_data: 'about' }],
         [{ text: "💳 Оплата", callback_data: 'payment' }],
         [{ text: "🚚 Доставка", callback_data: 'delivery' }],
@@ -51,4 +51,45 @@ bot.on('callback_query', (query) => {
   } else if (data === 'contacts') {
     bot.sendMessage(chatId, "📞 +382 69 575 828\nTelegram: @IKRAmne_bot\nГруппа: https://t.me/ikru_mne");
   }
+});
+// Получение заказов из Mini App
+bot.on('message', (msg) => {
+
+  if (msg.web_app_data) {
+
+    const order = msg.web_app_data.data;
+
+    bot.sendMessage(msg.chat.id, "📦 Новый заказ:\n\n" + order);
+
+  }
+
+});
+bot.on('message', (msg) => {
+
+  if (msg.web_app_data) {
+
+    const order = decodeURIComponent(msg.web_app_data.data);
+
+    const now = new Date();
+
+    const time =
+      now.getDate().toString().padStart(2,'0') + "." +
+      (now.getMonth()+1).toString().padStart(2,'0') + "." +
+      now.getFullYear() + " " +
+      now.getHours().toString().padStart(2,'0') + ":" +
+      now.getMinutes().toString().padStart(2,'0');
+
+    const receipt =
+`📦 <b>НОВЫЙ ЗАКАЗ</b>
+
+${order}
+
+🕒 ${time}`;
+
+    bot.sendMessage(ordersChannel, receipt, { parse_mode: "HTML" });
+
+    bot.sendMessage(msg.chat.id, "✅ Заказ отправлен! Мы скоро свяжемся с вами.");
+
+  }
+
 });

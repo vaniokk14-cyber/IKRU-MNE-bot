@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // Твой токен (новый и безопасный)
-const token = '8636438139:AAFwUi_Dc6xDvAcZCdLVRt7SWQsVLGrRb6o';
+const token = '8636438139:AAFZ-1KWSA34TFMpL27ZIK6H7gFia-S0e1s';
 
 // Создание бота с опросом (polling)
 const bot = new TelegramBot(token, { polling: true });
